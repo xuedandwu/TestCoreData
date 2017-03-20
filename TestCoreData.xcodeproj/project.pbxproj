@@ -14,6 +14,13 @@
 		1ED9EFE61E6D2160002E4693 /* TestCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1ED9EFE41E6D2160002E4693 /* TestCoreData.xcdatamodeld */; };
 		1ED9EFE81E6D2160002E4693 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ED9EFE71E6D2160002E4693 /* Assets.xcassets */; };
 		1ED9EFEB1E6D2160002E4693 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ED9EFE91E6D2160002E4693 /* LaunchScreen.storyboard */; };
+		1ED9EFFF1E6D252A002E4693 /* Dog+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED9EFFD1E6D252A002E4693 /* Dog+CoreDataProperties.m */; };
+		1EE9DF7B1E7F6328004A615A /* Student+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE9DF791E7F6328004A615A /* Student+CoreDataProperties.m */; };
+		1EE9DF7E1E7F6C99004A615A /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EE9DF7D1E7F6C99004A615A /* libsqlite3.0.tbd */; };
+		1EE9DF871E7F7941004A615A /* Clazz+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE9DF801E7F7941004A615A /* Clazz+CoreDataClass.m */; };
+		1EE9DF881E7F7941004A615A /* Clazz+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE9DF821E7F7941004A615A /* Clazz+CoreDataProperties.m */; };
+		1EE9DF891E7F7941004A615A /* Course+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE9DF841E7F7941004A615A /* Course+CoreDataClass.m */; };
+		1EE9DF8A1E7F7941004A615A /* Course+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE9DF861E7F7941004A615A /* Course+CoreDataProperties.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +35,23 @@
 		1ED9EFE71E6D2160002E4693 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1ED9EFEA1E6D2160002E4693 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1ED9EFEC1E6D2160002E4693 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1ED9EFFA1E6D252A002E4693 /* Dog+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Dog+CoreDataClass.h"; sourceTree = "<group>"; };
+		1ED9EFFB1E6D252A002E4693 /* Dog+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Dog+CoreDataClass.m"; sourceTree = "<group>"; };
+		1ED9EFFC1E6D252A002E4693 /* Dog+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Dog+CoreDataProperties.h"; sourceTree = "<group>"; };
+		1ED9EFFD1E6D252A002E4693 /* Dog+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Dog+CoreDataProperties.m"; sourceTree = "<group>"; };
+		1EE9DF761E7F6328004A615A /* Student+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Student+CoreDataClass.h"; sourceTree = "<group>"; };
+		1EE9DF771E7F6328004A615A /* Student+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Student+CoreDataClass.m"; sourceTree = "<group>"; };
+		1EE9DF781E7F6328004A615A /* Student+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Student+CoreDataProperties.h"; sourceTree = "<group>"; };
+		1EE9DF791E7F6328004A615A /* Student+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Student+CoreDataProperties.m"; sourceTree = "<group>"; };
+		1EE9DF7D1E7F6C99004A615A /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		1EE9DF7F1E7F7941004A615A /* Clazz+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Clazz+CoreDataClass.h"; sourceTree = "<group>"; };
+		1EE9DF801E7F7941004A615A /* Clazz+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Clazz+CoreDataClass.m"; sourceTree = "<group>"; };
+		1EE9DF811E7F7941004A615A /* Clazz+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Clazz+CoreDataProperties.h"; sourceTree = "<group>"; };
+		1EE9DF821E7F7941004A615A /* Clazz+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Clazz+CoreDataProperties.m"; sourceTree = "<group>"; };
+		1EE9DF831E7F7941004A615A /* Course+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Course+CoreDataClass.h"; sourceTree = "<group>"; };
+		1EE9DF841E7F7941004A615A /* Course+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Course+CoreDataClass.m"; sourceTree = "<group>"; };
+		1EE9DF851E7F7941004A615A /* Course+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Course+CoreDataProperties.h"; sourceTree = "<group>"; };
+		1EE9DF861E7F7941004A615A /* Course+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Course+CoreDataProperties.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EE9DF7E1E7F6C99004A615A /* libsqlite3.0.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,8 +69,25 @@
 		1ED9EFCC1E6D2160002E4693 = {
 			isa = PBXGroup;
 			children = (
+				1EE9DF7F1E7F7941004A615A /* Clazz+CoreDataClass.h */,
+				1EE9DF801E7F7941004A615A /* Clazz+CoreDataClass.m */,
+				1EE9DF811E7F7941004A615A /* Clazz+CoreDataProperties.h */,
+				1EE9DF821E7F7941004A615A /* Clazz+CoreDataProperties.m */,
+				1EE9DF831E7F7941004A615A /* Course+CoreDataClass.h */,
+				1EE9DF841E7F7941004A615A /* Course+CoreDataClass.m */,
+				1EE9DF851E7F7941004A615A /* Course+CoreDataProperties.h */,
+				1EE9DF861E7F7941004A615A /* Course+CoreDataProperties.m */,
+				1EE9DF761E7F6328004A615A /* Student+CoreDataClass.h */,
+				1EE9DF771E7F6328004A615A /* Student+CoreDataClass.m */,
+				1EE9DF781E7F6328004A615A /* Student+CoreDataProperties.h */,
+				1EE9DF791E7F6328004A615A /* Student+CoreDataProperties.m */,
+				1ED9EFFA1E6D252A002E4693 /* Dog+CoreDataClass.h */,
+				1ED9EFFB1E6D252A002E4693 /* Dog+CoreDataClass.m */,
+				1ED9EFFC1E6D252A002E4693 /* Dog+CoreDataProperties.h */,
+				1ED9EFFD1E6D252A002E4693 /* Dog+CoreDataProperties.m */,
 				1ED9EFD71E6D2160002E4693 /* TestCoreData */,
 				1ED9EFD61E6D2160002E4693 /* Products */,
+				1EE9DF7C1E7F6C99004A615A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -80,6 +122,14 @@
 				1ED9EFD91E6D2160002E4693 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1EE9DF7C1E7F6C99004A615A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1EE9DF7D1E7F6C99004A615A /* libsqlite3.0.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,8 +204,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1ED9EFE61E6D2160002E4693 /* TestCoreData.xcdatamodeld in Sources */,
+				1EE9DF871E7F7941004A615A /* Clazz+CoreDataClass.m in Sources */,
 				1ED9EFE01E6D2160002E4693 /* ViewController.m in Sources */,
+				1ED9EFFF1E6D252A002E4693 /* Dog+CoreDataProperties.m in Sources */,
+				1EE9DF8A1E7F7941004A615A /* Course+CoreDataProperties.m in Sources */,
+				1EE9DF881E7F7941004A615A /* Clazz+CoreDataProperties.m in Sources */,
 				1ED9EFDD1E6D2160002E4693 /* AppDelegate.m in Sources */,
+				1EE9DF891E7F7941004A615A /* Course+CoreDataClass.m in Sources */,
+				1EE9DF7B1E7F6328004A615A /* Student+CoreDataProperties.m in Sources */,
 				1ED9EFDA1E6D2160002E4693 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -278,6 +334,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TestCoreData/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_BUNDLE_IDENTIFIER = test.coredata.com.TestCoreData;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -289,6 +346,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TestCoreData/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_BUNDLE_IDENTIFIER = test.coredata.com.TestCoreData;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -313,6 +371,7 @@
 				1ED9EFF11E6D2160002E4693 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

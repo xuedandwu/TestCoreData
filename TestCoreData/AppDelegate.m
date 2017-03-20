@@ -7,8 +7,14 @@
 //
 
 #import "AppDelegate.h"
+#import "Student+CoreDataClass.h"
+#import "Student+CoreDataProperties.h"
 
 @interface AppDelegate ()
+
+@property (nonatomic,readwrite,strong) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic,readwrite,strong) NSPersistentStoreCoordinator *persistentStorCoordinator;
+@property (nonatomic, readwrite, strong) NSManagedObjectContext *context;
 
 @end
 
@@ -17,7 +23,128 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    Student *student = [NSEntityDescription insertNewObjectForEntityForName:@"Student" inManagedObjectContext:self.context];
+    student.studentName = @"小明";
+    student.studentId = 1;
+    student.studentAge = 20;
+    
+    NSError *error;
+    
+    [self.context save:&error];
+    
+    
+    NSFetchRequest *fetchRequest = [Student fetchRequest];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"studentAge > %@",@(20)];
+    
+    NSArray <NSSortDescriptor *> *sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"studentName" ascending:YES]];
+    fetchRequest.sortDescriptors = sortDescriptors;
+    
+    NSArray <Student *> *students = [self.context executeFetchRequest:fetchRequest error:nil];
+    
+    NSLog(@"ary:%@",students);
+    
+    
+    for (Student *student in students) {
+        [self.context deleteObject:student];
+    }
+    
+    [self.context save:nil];
+    
+    for (Student *student in students) {
+        student.studentName = @"newName";
+    }
+    
+    [self.context save:nil];
+    
+    
+    
+    NSLog(@"ary:%@",students);
+    
+    for (NSUInteger i=0; i<1000; i++) {
+        Student *newStudent = [NSEntityDescription insertNewObjectForEntityForName:@"Student" inManagedObjectContext:self.context];
+        
+        int16_t stuId  = arc4random_uniform(9999);
+        
+        newStudent.studentName = [NSString stringWithFormat:@"student-%d",stuId];
+        newStudent.studentId = stuId;
+        newStudent.studentAge = arc4random_uniform(10)+10;
+        
+    }
+    
+    [self.context save:nil];
+    
+    [students setValue:@"anotherName" forKeyPath:@"studentName"];
+    
+    [self batchUpdate];
+    
+    [self batchDelete];
+    
+    [self insertNew];
+    
+    
     return YES;
+}
+
+- (void)insertNew{
+    Student *student = [NSEntityDescription insertNewObjectForEntityForName:@"Student" inManagedObjectContext:self.context];
+    
+    Clazz *clazz = [[Clazz alloc] initWithContext:self.context];
+    
+    student.studentClass = clazz;
+    
+    Course *english = [[Course alloc] initWithContext:self.context];
+    Course *math = [[Course alloc] initWithContext:self.context];
+    
+    [student addStudentCoursesObject:english];
+    [student addStudentCourses:[NSSet setWithObjects:english, math, nil]];
+    
+    [self.context save:nil];
+    
+
+}
+
+- (void)batchUpdate{
+    
+    NSError *error;
+    
+    NSBatchUpdateRequest *updateRequest = [[NSBatchUpdateRequest alloc] initWithEntity:[Student entity]];
+    
+//    NSBatchUpdateRequest *updateRequest = [[NSBatchUpdateRequest alloc] initWithEntityName:@"Student"];
+    
+    updateRequest.predicate = [NSPredicate predicateWithFormat:@"studentAge == %@",@(20)];
+    
+    updateRequest.propertiesToUpdate = @{@"studentName":@"anotherName"};
+    
+    updateRequest.resultType = NSUpdatedObjectIDsResultType;
+    
+    NSBatchUpdateResult *updateResult = [self.context executeRequest:updateRequest error:&error];
+    
+    NSArray <NSManagedObjectID *> *updateObjectIDs = updateResult.result;
+    
+//    NSLog(@"updateObjectIDs:%@",updateObjectIDs);
+    
+    NSDictionary *updateDict = @{NSUpdatedObjectsKey : updateObjectIDs};
+    [NSManagedObjectContext mergeChangesFromRemoteContextSave:updateDict intoContexts:@[self.context]];
+    NSLog(@"updateDict:%@",updateDict);
+    
+    
+}
+
+- (void)batchDelete{
+    NSFetchRequest *deleteFetch = [Student fetchRequest];
+    
+    deleteFetch.predicate = [NSPredicate predicateWithFormat:@"studentAge ==%@",@(20)];
+    
+    NSBatchDeleteRequest *deleteRequest = [[NSBatchDeleteRequest alloc] initWithFetchRequest:deleteFetch];
+    deleteRequest.resultType = NSBatchDeleteResultTypeObjectIDs;
+    
+    NSBatchUpdateResult *deleteResult = [self.context executeRequest:deleteRequest error:nil];
+    NSArray <NSManagedObjectID *> *deleteObjectIDs = deleteResult.result;
+    
+    NSDictionary *deleteDict = @{NSDeletedObjectsKey : deleteObjectIDs};
+    [NSManagedObjectContext mergeChangesFromRemoteContextSave:deleteDict intoContexts:@[self.context]];
+    
 }
 
 
@@ -93,6 +220,58 @@
         NSLog(@"Unresolved error %@, %@", error, error.userInfo);
         abort();
     }
+}
+
+- (NSURL *)applicationDocumentsDirectory
+{
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+
+#pragma mark - CoreData
+- (NSManagedObjectModel *)managedObjectModel{
+    if (!_managedObjectModel) {
+        NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"TestCoreData" withExtension:@"momd"];
+        
+        _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+        
+    }
+    
+    return _managedObjectModel;
+}
+
+- (NSPersistentStoreCoordinator *)persistentStorCoordinator{
+    if (!_persistentStorCoordinator) {
+        _persistentStorCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
+        NSURL *sqliteURL = [[self documentDirectoryURL] URLByAppendingPathComponent:@"TestCoreData.sqlite"];
+        NSError *error;
+        [_persistentStorCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+                                                 configuration:nil
+                                                           URL:sqliteURL
+                                                       options:nil
+                                                         error:&error];
+        
+        if (error) {
+            NSLog(@"falied to create persistentStoreCoordinator %@", error.localizedDescription);
+        }
+    }
+    
+    return _persistentStorCoordinator;
+}
+
+- (NSManagedObjectContext *)context{
+    // 指定 context 的并发类型： NSMainQueueConcurrencyType 或 NSPrivateQueueConcurrencyType
+    if (!_context) {
+        _context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+        _context.persistentStoreCoordinator = self.persistentStorCoordinator;
+    }
+    
+    return _context;
+}
+
+// 用来获取 document 目录
+- (nullable NSURL *)documentDirectoryURL {
+    return [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask].firstObject;
 }
 
 @end
